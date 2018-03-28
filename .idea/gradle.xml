@@ -10,6 +10,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/lib-litho" />
+            <option value="$PROJECT_DIR$/lib-player" />
+            <option value="$PROJECT_DIR$/mvp-sample" />
+            <option value="$PROJECT_DIR$/mvvm-sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

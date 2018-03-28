@@ -1,1 +1,1 @@
-include ':app', ':base'
+include ':app', ':base', ':mvp-sample', ':mvvm-sample', ':lib-player', ':lib-litho'
