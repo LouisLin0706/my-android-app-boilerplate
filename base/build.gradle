@@ -25,14 +25,16 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
     def commonDependencies = rootProject.ext.commonDependencies
     def developmentDependencies = rootProject.ext.developmentDependencies
     def commonTestDependencies = rootProject.ext.commonTestDependencies
-
-    api 'com.android.support:appcompat-v7:26.1.0'
     application project(':app')
 
     // Android
@@ -56,6 +58,8 @@ dependencies {
     api commonDependencies.dagger2
     annotationProcessor commonDependencies.dagger2Compiler
     testAnnotationProcessor commonDependencies.dagger2Compiler
+    annotationProcessor commonDependencies.dagger2AndroidProcessor
+    api commonDependencies.dagger2AndroidSupport
     compileOnly commonDependencies.javaxAnnotation
 
     // RxJava 2

@@ -42,6 +42,8 @@ ext {
 
             dagger2Compiler                 : "com.google.dagger:dagger-compiler:${dagger2}",
             dagger2                         : "com.google.dagger:dagger:${dagger2}",
+            dagger2AndroidProcessor         : "com.google.dagger:dagger-android-processor:${dagger2}",
+            dagger2AndroidSupport           : "com.google.dagger:dagger-android-support:${dagger2}",
             javaxAnnotation                 : "org.glassfish:javax.annotation:${javaxAnnotation}",
 
             supportAppCompatV7              : "com.android.support:appcompat-v7:${supportLibrary}",
