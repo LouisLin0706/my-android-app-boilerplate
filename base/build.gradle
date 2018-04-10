@@ -35,7 +35,7 @@ dependencies {
     def commonDependencies = rootProject.ext.commonDependencies
     def developmentDependencies = rootProject.ext.developmentDependencies
     def commonTestDependencies = rootProject.ext.commonTestDependencies
-    application project(':app')
+    application project(':app_mvvm_sample')
 
     // Android
     api commonDependencies.supportAppCompatV7
@@ -114,7 +114,7 @@ dependencies {
     testImplementation commonTestDependencies.junit
     testImplementation commonTestDependencies.assertj
     testImplementation commonTestDependencies.mockito
-    feature project(":mvp-sample")
+    feature project(':mvp-kotlin-sample')
     feature project(":mvvm-sample")
     feature project(":lib-player")
     feature project(":lib-litho")

@@ -8,11 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app_mvvm_sample" />
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/lib-litho" />
             <option value="$PROJECT_DIR$/lib-player" />
-            <option value="$PROJECT_DIR$/mvp-sample" />
+            <option value="$PROJECT_DIR$/mvp-kotlin-sample" />
             <option value="$PROJECT_DIR$/mvvm-sample" />
           </set>
         </option>
