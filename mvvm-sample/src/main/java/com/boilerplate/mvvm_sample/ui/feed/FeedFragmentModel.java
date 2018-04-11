@@ -14,7 +14,13 @@ import dagger.Provides;
 public class FeedFragmentModel {
 
     @Provides
-    ViewModelProvider.Factory provideBlogViewModel(FeedFragmentViewModel feedFragmentViewModel) {
-        return new ViewModelProviderFactory<>(feedFragmentViewModel);
+    FeedViewModel feedViewModel() {
+        return new FeedViewModel();
+    }
+
+
+    @Provides
+    ViewModelProvider.Factory provideFeedViewModel(FeedViewModel feedViewModel) {
+        return new ViewModelProviderFactory<>(feedViewModel);
     }
 }

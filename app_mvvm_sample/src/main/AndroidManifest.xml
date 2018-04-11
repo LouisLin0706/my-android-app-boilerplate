@@ -3,7 +3,7 @@
     package="com.boilerplate.my_android_app_boilerplate">
 
     <application
-        android:name="com.boilerplate.mvvm_sample.ui.MvvmApp"
+        android:name="com.boilerplate.mvvm_sample.ui.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

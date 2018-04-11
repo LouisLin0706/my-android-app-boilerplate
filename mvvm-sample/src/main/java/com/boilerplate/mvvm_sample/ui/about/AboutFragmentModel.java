@@ -17,4 +17,10 @@ public class AboutFragmentModel {
     ViewModelProvider.Factory provideAboutFragmentViewModel(AboutFragmentViewModel aboutFragmentViewModel) {
         return new ViewModelProviderFactory<>(aboutFragmentViewModel);
     }
+
+    @Provides
+    AboutFragmentViewModel aboutFragmentViewModel() {
+        return new AboutFragmentViewModel();
+    }
+
 }

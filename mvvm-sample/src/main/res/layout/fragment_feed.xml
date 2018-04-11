@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.boilerplate.mvvm_sample.ui.feed.FeedFragmentViewModel" />
+            type="com.boilerplate.mvvm_sample.ui.feed.FeedViewModel" />
 
     </data>
 

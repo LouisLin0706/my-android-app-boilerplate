@@ -17,8 +17,9 @@
 package com.boilerplate.mvvm_sample.ui;
 
 import android.app.Activity;
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
+import com.boilerplate.mvvm_sample.ui.di.component.DaggerAppComponent;
 
 import javax.inject.Inject;
 
@@ -26,7 +27,8 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
 
-public class MvvmApp extends Application implements HasActivityInjector {
+public class App extends MultiDexApplication implements HasActivityInjector {
+
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 

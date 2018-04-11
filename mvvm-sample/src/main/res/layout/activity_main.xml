@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.boilerplate.mvvm_sample.ui.main.MainActivityViewModel" />
+            type="com.boilerplate.mvvm_sample.ui.main.MainViewModel" />
 
     </data>
 

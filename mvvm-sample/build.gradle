@@ -1,5 +1,4 @@
 apply plugin: 'com.android.feature'
-
 android {
     def androidVersions = rootProject.ext.android
     compileSdkVersion androidVersions.compileSdkVersion
@@ -23,4 +22,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':base')
+
+    // Dagger 2
+    implementation commonDependencies.dagger2
+    annotationProcessor commonDependencies.dagger2Compiler
+    testAnnotationProcessor commonDependencies.dagger2Compiler
+    compileOnly commonDependencies.javaxAnnotation
 }

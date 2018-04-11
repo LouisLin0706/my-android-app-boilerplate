@@ -8,6 +8,8 @@ android {
         applicationId "com.boilerplate.my_android_app_boilerplate"
         minSdkVersion androidVersions.minSdkVersion
         targetSdkVersion androidVersions.targetSdkVersion
+
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

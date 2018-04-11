@@ -9,6 +9,7 @@ android {
     baseFeature true
 
     defaultConfig {
+        multiDexEnabled true
         minSdkVersion androidVersions.minSdkVersion
         targetSdkVersion androidVersions.targetSdkVersion
     }
@@ -27,6 +28,10 @@ android {
 
     dataBinding {
         enabled = true
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
 
 }
@@ -77,6 +82,9 @@ dependencies {
     api commonDependencies.retrofit2
     api commonDependencies.retrofitRxAdapter
     api commonDependencies.retrofitConverter
+
+    //multidex
+    api commonDependencies.multidex
 
     // Gson
     api commonDependencies.gson
