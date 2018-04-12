@@ -1,7 +1,7 @@
 allprojects {
     repositories {
-        google()
         jcenter()
+        google()
         maven { url "https://jitpack.io" }
     }
 }
@@ -36,8 +36,11 @@ ext {
     mockito = '2.8.9'
     assertJ = '3.8.0'
     multidexVersion = '1.0.1'
+    exoplayer2 = '2.7.3'
+    kotlin_version = '1.2.31'
 
     commonDependencies = [
+            kotlin                          : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
             rxJava2                         : "io.reactivex.rxjava2:rxjava:${rxJava2}",
             rxAndroid                       : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
 
@@ -99,6 +102,7 @@ ext {
             stethoOkHttp  : "com.facebook.stetho:stetho-okhttp3:${stetho}",
 
             chuck         : "com.readystatesoftware.chuck:library:${chuck}",
-            chuckNoOp     : "com.readystatesoftware.chuck:library-no-op:${chuck}"
+            chuckNoOp     : "com.readystatesoftware.chuck:library-no-op:${chuck}",
+            exoplayer2    : "com.google.android.exoplayer:exoplayer:${exoplayer2}"
     ]
 }

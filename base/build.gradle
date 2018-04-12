@@ -40,7 +40,7 @@ dependencies {
     def commonDependencies = rootProject.ext.commonDependencies
     def developmentDependencies = rootProject.ext.developmentDependencies
     def commonTestDependencies = rootProject.ext.commonTestDependencies
-    application project(':app_mvvm_sample')
+//    application project(':app_mvvm_sample')
 
     // Android
     api commonDependencies.supportAppCompatV7
@@ -60,11 +60,11 @@ dependencies {
     testImplementation commonTestDependencies.architectureComponentsTesting
 
     // Dagger 2
-    api commonDependencies.dagger2
+    implementation commonDependencies.dagger2
     annotationProcessor commonDependencies.dagger2Compiler
     testAnnotationProcessor commonDependencies.dagger2Compiler
     annotationProcessor commonDependencies.dagger2AndroidProcessor
-    api commonDependencies.dagger2AndroidSupport
+    implementation commonDependencies.dagger2AndroidSupport
     compileOnly commonDependencies.javaxAnnotation
 
     // RxJava 2
@@ -122,8 +122,8 @@ dependencies {
     testImplementation commonTestDependencies.junit
     testImplementation commonTestDependencies.assertj
     testImplementation commonTestDependencies.mockito
-    feature project(':mvp-kotlin-sample')
-    feature project(":mvvm-sample")
+    feature project(':app-mvp-kotlin-sample')
+//    feature project(":mvvm-sample")
     feature project(":lib-player")
     feature project(":lib-litho")
 }

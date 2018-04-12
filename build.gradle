@@ -4,8 +4,8 @@ apply from: 'buildsystem/configurations.gradle'
 buildscript {
     ext.kotlinVersion = '1.2.10'
     repositories {
-        google()
         jcenter()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -24,4 +24,5 @@ task clean(type: Delete) {
 ext {
     // App dependencies
     kotlinVersion = kotlinVersion
+    dagger2Version = '2.11'
 }

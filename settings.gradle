@@ -1,1 +1,1 @@
-include ':app_mvvm_sample', ':base', ':mvp-kotlin-sample', ':mvvm-sample', ':lib-player', ':lib-litho'
+include  ':base', ':app-mvp-kotlin-sample', ':app-mvvm-sample', ':lib-player', ':lib-litho'

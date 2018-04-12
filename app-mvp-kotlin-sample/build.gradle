@@ -1,9 +1,10 @@
-apply plugin: 'com.android.feature'
-
+//apply plugin: 'com.android.feature'
+apply plugin: 'com.android.application'
 android {
     def androidVersions = rootProject.ext.android
     compileSdkVersion androidVersions.compileSdkVersion
     buildToolsVersion androidVersions.buildToolsVersion
+
 
     defaultConfig {
         minSdkVersion androidVersions.minSdkVersion
@@ -23,7 +24,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':base')
-    implementation developmentDependencies.exoplayer2
 }
