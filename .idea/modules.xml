@@ -3,12 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app_mvvm_sample/app.iml" filepath="$PROJECT_DIR$/app_mvvm_sample/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app-mvp-kotlin-sample/mvp-kotlin-sample.iml" filepath="$PROJECT_DIR$/app-mvp-kotlin-sample/mvp-kotlin-sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app-mvvm-sample/mvvm-sample.iml" filepath="$PROJECT_DIR$/app-mvvm-sample/mvvm-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-mvp-kotlin-sample/app-mvp-kotlin-sample.iml" filepath="$PROJECT_DIR$/app-mvp-kotlin-sample/app-mvp-kotlin-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-mvvm-sample/app-mvvm-sample.iml" filepath="$PROJECT_DIR$/app-mvvm-sample/app-mvvm-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib-litho/lib-litho.iml" filepath="$PROJECT_DIR$/lib-litho/lib-litho.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib-player/lib-player.iml" filepath="$PROJECT_DIR$/lib-player/lib-player.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-mvp-kotlin-sample/mvp-kotlin-sample.iml" filepath="$PROJECT_DIR$/app-mvp-kotlin-sample/mvp-kotlin-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvp-kotlin-sample/mvp-sample.iml" filepath="$PROJECT_DIR$/mvp-kotlin-sample/mvp-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-mvvm-sample/mvvm-sample.iml" filepath="$PROJECT_DIR$/app-mvvm-sample/mvvm-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/my-android-app-boilerplate.iml" filepath="$PROJECT_DIR$/my-android-app-boilerplate.iml" />
     </modules>
   </component>
