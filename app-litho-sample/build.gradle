@@ -1,4 +1,4 @@
-apply plugin: 'com.android.feature'
+apply plugin: 'com.android.application'
 
 android {
     def androidVersions = rootProject.ext.android
@@ -7,8 +7,12 @@ android {
 
 
     defaultConfig {
+        applicationId "com.smple.app_litho_sample"
         minSdkVersion androidVersions.minSdkVersion
         targetSdkVersion androidVersions.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -24,17 +28,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':base')
-    api developmentDependencies.lithoCore
-    api developmentDependencies.lithoWidget
-    compileOnly developmentDependencies.lithoAnnotations
-    annotationProcessor developmentDependencies.lithoAnnotationProcessor
-    api developmentDependencies.soloader
-    api developmentDependencies.fresco
-
-    api developmentDependencies.lithoSectionsCore
-    api developmentDependencies.lithoSectionsWidget
-    compileOnly developmentDependencies.lithoSectionsAnnotations
-    annotationProcessor developmentDependencies.lithoSectionsAnnotationProcessor
+    implementation project(':lib-litho')
 }
