@@ -39,6 +39,12 @@ ext {
     exoplayer2 = '2.7.3'
     kotlin_version = '1.2.31'
 
+    litho = '0.13.1'
+    lithoSections = '0.13.1'
+    soLoader = '0.2.0'
+    fresco = '0.13.1'
+
+
     commonDependencies = [
             kotlin                          : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
             rxJava2                         : "io.reactivex.rxjava2:rxjava:${rxJava2}",
@@ -95,14 +101,27 @@ ext {
     ]
 
     developmentDependencies = [
-            leakcanary    : "com.squareup.leakcanary:leakcanary-android:${leakCanary}",
-            leakcanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanary}",
+            leakcanary                      : "com.squareup.leakcanary:leakcanary-android:${leakCanary}",
+            leakcanaryNoOp                  : "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanary}",
 
-            stetho        : "com.facebook.stetho:stetho:${stetho}",
-            stethoOkHttp  : "com.facebook.stetho:stetho-okhttp3:${stetho}",
+            stetho                          : "com.facebook.stetho:stetho:${stetho}",
+            stethoOkHttp                    : "com.facebook.stetho:stetho-okhttp3:${stetho}",
 
-            chuck         : "com.readystatesoftware.chuck:library:${chuck}",
-            chuckNoOp     : "com.readystatesoftware.chuck:library-no-op:${chuck}",
-            exoplayer2    : "com.google.android.exoplayer:exoplayer:${exoplayer2}"
+            chuck                           : "com.readystatesoftware.chuck:library:${chuck}",
+            chuckNoOp                       : "com.readystatesoftware.chuck:library-no-op:${chuck}",
+            exoplayer2                      : "com.google.android.exoplayer:exoplayer:${exoplayer2}",
+
+            lithoCore                       : "com.facebook.litho:litho-core:${litho}",
+            lithoWidget                     : "com.facebook.litho:litho-widget:${litho}",
+            lithoAnnotations                : "com.facebook.litho:litho-annotations:${litho}",
+            lithoAnnotationProcessor        : "com.facebook.litho:litho-processor:${litho}",
+
+            lithoSectionsCore               : "com.facebook.litho:litho-sections-core:${lithoSections}",
+            lithoSectionsWidget             : "com.facebook.litho:litho-sections-widget:${lithoSections}",
+            lithoSectionsAnnotations        : "com.facebook.litho:litho-sections-annotations:${lithoSections}",
+            lithoSectionsAnnotationProcessor: "com.facebook.litho:litho-sections-processor:${lithoSections}",
+
+            fresco                          : "com.facebook.litho:litho-fresco:${fresco}",
+            soloader                        : "com.facebook.soloader:soloader:${soLoader}",
     ]
 }

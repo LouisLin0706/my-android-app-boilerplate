@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app-camera2-sample" />
             <option value="$PROJECT_DIR$/app-mvp-kotlin-sample" />
             <option value="$PROJECT_DIR$/app-mvvm-sample" />
             <option value="$PROJECT_DIR$/base" />

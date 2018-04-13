@@ -37,6 +37,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':base')
 
+
     // Dagger 2
     implementation commonDependencies.dagger2
     annotationProcessor commonDependencies.dagger2Compiler

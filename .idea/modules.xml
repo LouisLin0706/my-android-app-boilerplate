@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app_mvvm_sample/app.iml" filepath="$PROJECT_DIR$/app_mvvm_sample/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-camera2-sample/app-camera2-sample.iml" filepath="$PROJECT_DIR$/app-camera2-sample/app-camera2-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-mvp-kotlin-sample/app-mvp-kotlin-sample.iml" filepath="$PROJECT_DIR$/app-mvp-kotlin-sample/app-mvp-kotlin-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-mvvm-sample/app-mvvm-sample.iml" filepath="$PROJECT_DIR$/app-mvvm-sample/app-mvvm-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
