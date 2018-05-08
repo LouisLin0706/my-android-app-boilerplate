@@ -1,4 +1,4 @@
-package com.boilerplate.mvp_sample;
+package com.boilerplate.mvpSample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

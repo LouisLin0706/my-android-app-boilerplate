@@ -1,25 +1,23 @@
-package com.superc.base
+package com.boilerplate.base.kotlin
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 
 /**
  * Created by Louis on 2018/4/27.
  */
-abstract class BaseActivity<in V : IView, T : IPresenter<V>> : AppCompatActivity(), IView {
+abstract class BaseActivity<T, S> : AppCompatActivity() where T : IPresenter<S>, S : IView {
 
     protected abstract var mPresenter: T
-    protected lateinit var fragmentBackStack: List<Fragment>
+    protected abstract var mView: S
     protected abstract val layout: Int
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout)
-        fragmentBackStack = ArrayList()
         setupActivityComponent()
-        mPresenter.attachView(this as V)
+        mPresenter.attachView(mView)
         initEventAndData()
     }
 

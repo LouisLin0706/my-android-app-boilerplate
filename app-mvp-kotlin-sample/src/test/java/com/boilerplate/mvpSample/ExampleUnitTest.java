@@ -1,4 +1,4 @@
-package com.boilerplate.mvp_sample;
+package com.boilerplate.mvpSample;
 
 import org.junit.Test;
 

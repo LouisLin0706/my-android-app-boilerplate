@@ -1,5 +1,11 @@
 //apply plugin: 'com.android.feature'
 apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
 android {
     def androidVersions = rootProject.ext.android
     compileSdkVersion androidVersions.compileSdkVersion
@@ -9,6 +15,7 @@ android {
     defaultConfig {
         minSdkVersion androidVersions.minSdkVersion
         targetSdkVersion androidVersions.targetSdkVersion
+        applicationId "com.boilerplate.mvpSample"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }

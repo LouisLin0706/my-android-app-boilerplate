@@ -26,4 +26,14 @@ dependencies {
 
     implementation project(':base')
     implementation developmentDependencies.exoplayer2
+
+    // Auto-Value
+    compileOnly commonDependencies.autoValue
+    annotationProcessor commonDependencies.autoValue
+    testAnnotationProcessor commonDependencies.autoValue
+    androidTestAnnotationProcessor commonDependencies.autoValue
+
+    // AutoValue Type Adapter
+    compileOnly commonDependencies.autoValueGson
+    annotationProcessor commonDependencies.autoValueGson
 }

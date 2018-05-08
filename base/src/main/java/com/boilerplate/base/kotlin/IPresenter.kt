@@ -1,9 +1,13 @@
-package com.superc.base
+package com.boilerplate.base.kotlin
 
 /**
  * Created by Louis on 2018/4/27.
  */
-interface IPresenter<in T : IView> {
-    fun attachView(view: T)
+
+interface IPresenter<S : IView> {
+
+    fun attachView(view: S)
+
+
     fun detachView()
 }

@@ -1,4 +1,4 @@
-package com.superc.base
+package com.boilerplate.base.kotlin
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -6,20 +6,17 @@ import io.reactivex.disposables.Disposable
 /**
  * Created by Louis on 2018/4/27.
  */
-class BasePresenter<T : IView> : IPresenter<T> {
+open class BasePresenter<T> : IPresenter<T> where T : IView {
+
+
+    protected var view: T? = null
+    protected var mCompositeDisposable: CompositeDisposable? = null
 
     override fun attachView(view: T) {
         this.view = view
     }
 
-
-    protected var mCompositeDisposable: CompositeDisposable? = null
-
-
-    override fun detachView() {
-    }
-
-    protected fun unSubsrcibe() {
+    protected fun unSubscribe() {
         if (mCompositeDisposable != null) {
             mCompositeDisposable!!.clear()
             mCompositeDisposable!!.dispose()
@@ -33,5 +30,8 @@ class BasePresenter<T : IView> : IPresenter<T> {
         mCompositeDisposable!!.add(disposable)
     }
 
-    protected var view: T? = null
+    override fun detachView() {
+        this.view = null
+        unSubscribe()
+    }
 }
