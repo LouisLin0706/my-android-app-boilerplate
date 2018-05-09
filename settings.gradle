@@ -1,1 +1,1 @@
-include  ':base', ':app-mvp-kotlin-sample', ':app-mvvm-sample', ':lib-player', ':lib-litho', ':app-camera2-sample', ':app-litho-sample'
+include  ':base', ':app-mvp-kotlin-sample', ':app-mvvm-sample', ':lib-player', ':lib-litho', ':app-camera2-sample', ':app-litho-sample', ':tv-kotlin-sample'

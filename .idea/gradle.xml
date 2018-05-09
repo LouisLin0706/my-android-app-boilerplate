@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/lib-litho" />
             <option value="$PROJECT_DIR$/lib-player" />
+            <option value="$PROJECT_DIR$/tv-kotlin-sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
