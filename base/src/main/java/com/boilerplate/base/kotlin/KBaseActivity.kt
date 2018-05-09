@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 /**
  * Created by Louis on 2018/4/27.
  */
-abstract class BaseActivity<T, S> : AppCompatActivity() where T : IPresenter<S>, S : IView {
+abstract class KBaseActivity<T, S> : AppCompatActivity() where T : KIPresenter<S>, S : KIView {
 
     protected abstract var mPresenter: T
     protected abstract var mView: S

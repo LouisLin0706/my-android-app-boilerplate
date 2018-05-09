@@ -2,14 +2,12 @@ package com.boilerplate.base.kotlin
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.boilerplate.base.mvp.IPresenter
-import com.boilerplate.base.mvp.IView
 import java.lang.reflect.Field
 
 /**
  * Created by Louis on 2018/4/30.
  */
-abstract class BaseLazyFragment<V : IView, T : IPresenter<V>> : BaseFragment<V, T>() {
+abstract class KBaseLazyFragment<T, S> : KBaseFragment<T, S>() where T : KIPresenter<S>, S : KIView {
 
     private val isFirstResume: Boolean = true
     private var isFirstVisible: Boolean = true

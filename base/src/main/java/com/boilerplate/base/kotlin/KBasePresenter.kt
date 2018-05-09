@@ -6,7 +6,7 @@ import io.reactivex.disposables.Disposable
 /**
  * Created by Louis on 2018/4/27.
  */
-open class BasePresenter<T> : IPresenter<T> where T : IView {
+open class KBasePresenter<T> : KIPresenter<T> where T : KIView {
 
 
     protected var view: T? = null

@@ -1,12 +1,12 @@
 package com.boilerplate.mvpSample.ui.main
 
-import com.boilerplate.base.kotlin.BaseActivity
+import com.boilerplate.base.kotlin.KBaseActivity
 import com.boilerplate.mvp_sample.R
 
 /**
  * Created by Louis on 2018/5/1.
  */
-class MainActivity : BaseActivity<MainPresenter, MainContract.View>(), MainContract.View {
+class MainActivity : KBaseActivity<MainPresenter, MainContract.View>(), MainContract.View {
 
     override var mView: MainContract.View
         get() = this
