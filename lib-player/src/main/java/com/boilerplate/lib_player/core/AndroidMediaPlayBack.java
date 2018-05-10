@@ -105,6 +105,11 @@ public class AndroidMediaPlayBack extends HybridRulePlayBack {
     }
 
     @Override
+    public int getBufferedPercentage() {
+        return 0;
+    }
+
+    @Override
     public void setPlaybackParams(float speed, float pitch) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             PlaybackParams params = new PlaybackParams();

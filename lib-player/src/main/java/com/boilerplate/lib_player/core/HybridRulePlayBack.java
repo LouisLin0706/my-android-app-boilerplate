@@ -16,6 +16,11 @@ public abstract class HybridRulePlayBack extends HybridPlayBack {
         setUpSurfaceView();
     }
 
+    public IControllerView getIControllerView() {
+        return hybridPlayerView.getIControllerView();
+    }
+
+
     public void setHybridPlayerView(HybridPlayerView hybridPlayerView) {
         this.hybridPlayerView = hybridPlayerView;
         setUpSurfaceView();

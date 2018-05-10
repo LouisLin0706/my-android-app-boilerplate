@@ -49,12 +49,12 @@ public abstract class HybridPlayBack {
         iHybridPlayerEventListeners.remove(iHybridPlayerEventListener);
     }
 
-    public HybridPlayBack createInstance(Context context) {
+    public HybridRulePlayBack createInstance(Context context) {
         return createInstance(context, TYPE_DEFAULT);
     }
 
-    public HybridPlayBack createInstance(Context context, @PlaybackType int type) {
-        HybridPlayBack hybridPlayBack;
+    public HybridRulePlayBack createInstance(Context context, @PlaybackType int type) {
+        HybridRulePlayBack hybridPlayBack;
         switch (type) {
             case TYPE_ANDROID_NATIVE_PLAYBACK:
                 hybridPlayBack = new AndroidMediaPlayBack(context);
@@ -101,6 +101,7 @@ public abstract class HybridPlayBack {
 
     public abstract void release();
 
+    public abstract int getBufferedPercentage();
 
     public abstract void setPlaybackParams(float speed, float pitch);
 

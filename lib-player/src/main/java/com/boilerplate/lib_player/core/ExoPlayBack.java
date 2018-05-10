@@ -175,6 +175,11 @@ public class ExoPlayBack extends HybridRulePlayBack implements PlaybackPreparer 
     }
 
     @Override
+    public int getBufferedPercentage() {
+        return player.getBufferedPercentage();
+    }
+
+    @Override
     public void setPlaybackParams(float speed, float pitch) {
         PlaybackParameters params = new PlaybackParameters(speed, pitch);
         player.setPlaybackParameters(params);
