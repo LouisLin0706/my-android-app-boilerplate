@@ -11,7 +11,6 @@ import android.view.SurfaceView;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.boilerplate.lib_player.R;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -429,7 +428,7 @@ public class ExoPlayBack extends HybridRulePlayBack implements PlaybackPreparer 
             if (hybridPlayerView != null && playbackState == Player.STATE_ENDED) {
                 hybridPlayerView.showController();
             }
-            updateButtonVisibilities();
+//            updateButtonVisibilities();
         }
 
         @Override
@@ -456,22 +455,22 @@ public class ExoPlayBack extends HybridRulePlayBack implements PlaybackPreparer 
                             (MediaCodecRenderer.DecoderInitializationException) cause;
                     if (decoderInitializationException.decoderName == null) {
                         if (decoderInitializationException.getCause() instanceof MediaCodecUtil.DecoderQueryException) {
-                            errorString = getString(R.string.error_querying_decoders);
+//                            errorString = getString(R.string.error_querying_decoders);
                         } else if (decoderInitializationException.secureDecoderRequired) {
-                            errorString = getString(R.string.error_no_secure_decoder,
-                                    decoderInitializationException.mimeType);
+//                            errorString = getString(R.string.error_no_secure_decoder,
+//                                    decoderInitializationException.mimeType);
                         } else {
-                            errorString = getString(R.string.error_no_decoder,
-                                    decoderInitializationException.mimeType);
+//                            errorString = getString(R.string.error_no_decoder,
+//                                    decoderInitializationException.mimeType);
                         }
                     } else {
-                        errorString = getString(R.string.error_instantiating_decoder,
-                                decoderInitializationException.decoderName);
+//                        errorString = getString(R.string.error_instantiating_decoder,
+//                                decoderInitializationException.decoderName);
                     }
                 }
             }
             if (errorString != null) {
-                showToast(errorString);
+//                showToast(errorString);
             }
             inErrorState = true;
             if (isBehindLiveWindow(e)) {
