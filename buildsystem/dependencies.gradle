@@ -43,9 +43,11 @@ ext {
     lithoSections = '0.13.1'
     soLoader = '0.2.0'
     fresco = '0.13.1'
+    googlePlayerService = '12.0.1'
 
 
     commonDependencies = [
+            firebaseCore                    : "com.google.firebase:firebase-core:${googlePlayerService}",
             kotlin                          : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
             rxJava2                         : "io.reactivex.rxjava2:rxjava:${rxJava2}",
             rxAndroid                       : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",

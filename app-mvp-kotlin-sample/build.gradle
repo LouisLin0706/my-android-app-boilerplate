@@ -32,4 +32,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':base')
+    implementation commonDependencies.firebaseCore
 }
+apply plugin: 'com.google.gms.google-services'

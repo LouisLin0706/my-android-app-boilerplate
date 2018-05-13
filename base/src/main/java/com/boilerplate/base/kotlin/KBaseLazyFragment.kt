@@ -17,7 +17,7 @@ abstract class KBaseLazyFragment<T, S> : KBaseFragment<T, S>() where T : KIPrese
     override fun onDetach() {
         super.onDetach()
         try {
-            val childFramgnetManager: Field = Fragment::class.java!!.getDeclaredField("mChildFragmentManager")
+            val childFramgnetManager: Field = Fragment::class.java.getDeclaredField("mChildFragmentManager")
             childFramgnetManager.setAccessible(true)
             childFramgnetManager.set(this, null)
 

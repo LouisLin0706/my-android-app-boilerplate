@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "452520137248",
+    "firebase_url": "https://luciddream-3b48e.firebaseio.com",
+    "project_id": "luciddream-3b48e",
+    "storage_bucket": "luciddream-3b48e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452520137248:android:940e6b1d8d1a0b9a",
+        "android_client_info": {
+          "package_name": "com.boilerplate.mvpSample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452520137248-7402f6f6k8sbpqt68rliusrphfu74e3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhOrJIBtT7Za0wO10hlrzxAWmkhoFrlhQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
