@@ -55,7 +55,7 @@ import java.lang.reflect.Constructor;
  * TODO WindWind drm
  * TODO Aes dram
  */
-public class ExoPlayBack extends HybridRulePlayBack implements PlaybackPreparer {
+public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPreparer {
     private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
     private SimpleExoPlayer player;
     private DefaultTrackSelector trackSelector;

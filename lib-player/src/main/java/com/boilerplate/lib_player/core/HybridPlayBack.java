@@ -85,6 +85,14 @@ public abstract class HybridPlayBack {
         }
     }
 
+    public abstract void lifecycleIsStart();
+
+    public abstract void lifecycleIsStop();
+
+    public abstract void lifecycleIsPause();
+
+    public abstract void lifecycleIsResume();
+
     public abstract void play();
 
     public abstract void pause();

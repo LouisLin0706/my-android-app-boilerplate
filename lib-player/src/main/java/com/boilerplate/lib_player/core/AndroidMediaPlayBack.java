@@ -18,7 +18,7 @@ import java.util.Map;
  * Created by Louis on 2018/4/13.
  */
 
-public class AndroidMediaPlayBack extends HybridRulePlayBack {
+public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
     private MediaPlayer mediaPlayer;
     private Context context;
     private EventListener eventListener;
@@ -34,7 +34,6 @@ public class AndroidMediaPlayBack extends HybridRulePlayBack {
         this.context = context;
         this.hybridPlayerView = hybridPlayerView;
         this.eventListener = new EventListener();
-        mediaPlayer = new MediaPlayer();
         volume = 1;
     }
 
@@ -106,8 +105,11 @@ public class AndroidMediaPlayBack extends HybridRulePlayBack {
 
     @Override
     public void release() {
-        shouldAutoPlay = mediaPlayer.isPlaying();
-        mediaPlayer.release();
+        if (mediaPlayer != null) {
+            shouldAutoPlay = mediaPlayer.isPlaying();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     @Override
@@ -127,7 +129,9 @@ public class AndroidMediaPlayBack extends HybridRulePlayBack {
 
     @Override
     public void initialize() {
-
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        }
     }
 
     @Override
