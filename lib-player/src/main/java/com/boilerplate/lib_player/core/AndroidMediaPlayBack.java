@@ -8,7 +8,11 @@ import android.net.Uri;
 import android.view.Surface;
 import android.view.SurfaceView;
 
+import com.boilerplate.lib_player.extension.OverrideExtensionAdapter;
+
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Louis on 2018/4/13.
@@ -40,9 +44,11 @@ public class AndroidMediaPlayBack extends HybridRulePlayBack {
     }
 
     @Override
-    public void setDataSource(Uri path, String overrideExtension) {
+    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put(overrideExtensionAdapter.getAuthorizationHeader(), overrideExtensionAdapter.getAuthorizationToken());
         try {
-            mediaPlayer.setDataSource(path.toString());
+            mediaPlayer.setDataSource(context, path, headers);
             mediaPlayer.setOnVideoSizeChangedListener(hybridPlayerView);
             mediaPlayer.setOnCompletionListener(eventListener);
             mediaPlayer.setOnBufferingUpdateListener(eventListener);

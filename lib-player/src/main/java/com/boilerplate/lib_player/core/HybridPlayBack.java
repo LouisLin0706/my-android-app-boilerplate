@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.support.annotation.IntDef;
 import android.view.SurfaceView;
 
+import com.boilerplate.lib_player.extension.OverrideExtensionAdapter;
+
 import java.lang.annotation.Retention;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -76,7 +78,7 @@ public abstract class HybridPlayBack {
 
     public abstract void setDataSource(Uri path);
 
-    public void setDataSource(Uri path, String overrideExtension) {
+    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
         if (isPrepare) {
             release();
             initialize();

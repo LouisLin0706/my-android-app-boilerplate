@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.boilerplate.lib_player.extension.OverrideExtensionAdapter;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -88,7 +89,7 @@ public class ExoPlayBack extends HybridRulePlayBack implements PlaybackPreparer 
     }
 
     @Override
-    public void setDataSource(Uri path, String overrideExtension) {
+    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtension) {
         super.setDataSource(path, overrideExtension);
         boolean haveResumePosition = resumeWindow != C.INDEX_UNSET;
         if (haveResumePosition) {
@@ -302,11 +303,11 @@ public class ExoPlayBack extends HybridRulePlayBack implements PlaybackPreparer 
 
     private MediaSource buildMediaSource(
             Uri uri,
-            String overrideExtension,
+            OverrideExtensionAdapter overrideExtension,
             @Nullable Handler handler,
             @Nullable MediaSourceEventListener listener) {
-        @C.ContentType int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri)
-                : Util.inferContentType("." + overrideExtension);
+        @C.ContentType int type = TextUtils.isEmpty(overrideExtension.getOverrideSourceType()) ? Util.inferContentType(uri)
+                : Util.inferContentType("." + overrideExtension.getOverrideSourceType());
         switch (type) {
             case C.TYPE_DASH:
                 return new DashMediaSource.Factory(
