@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectStorageHelper">
     <option name="apkLocation" value="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
-    <option name="packageName" value="com.sample.tv_kotlin_sample" />
+    <option name="packageName" value="com.sample.app_player_sample" />
     <option name="projectName" value="my-android-app-boilerplate" />
   </component>
 </project>

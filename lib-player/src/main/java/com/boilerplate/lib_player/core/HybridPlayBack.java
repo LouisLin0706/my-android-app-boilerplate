@@ -55,8 +55,8 @@ public abstract class HybridPlayBack {
         return createInstance(context, TYPE_DEFAULT);
     }
 
-    public HybridRulePlayBack createInstance(Context context, @PlaybackType int type) {
-        HybridRulePlayBack hybridPlayBack;
+    public HybridLifecyclePlayBack createInstance(Context context, @PlaybackType int type) {
+        HybridLifecyclePlayBack hybridPlayBack;
         switch (type) {
             case TYPE_ANDROID_NATIVE_PLAYBACK:
                 hybridPlayBack = new AndroidMediaPlayBack(context);
