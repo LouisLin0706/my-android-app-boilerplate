@@ -1,9 +1,10 @@
 package com.boilerplate.lib_player.component;
 
 import com.boilerplate.lib_player.core.HybridRulePlayBack;
-import com.boilerplate.lib_player.core.IControllerView;
 
+import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -22,27 +23,21 @@ import io.reactivex.schedulers.Schedulers;
 public class AutoSyncControllerComponent {
 
     private Disposable disposableLoop;
-    private HybridRulePlayBack hybridPlayBack;
-    private IControllerView iControllerView;
-    private OnAutoControllerListener onAutoControllerListener;
+    private List<OnAutoControllerListener> autoControllerListeners = new ArrayList<>();
 
-    public AutoSyncControllerComponent(HybridRulePlayBack hybridPlayBack) {
-        this(null, hybridPlayBack);
-    }
-
-    public AutoSyncControllerComponent(OnAutoControllerListener onAutoControllerListene, HybridRulePlayBack hybridPlayBack) {
-        this.onAutoControllerListener = onAutoControllerListener;
-        this.iControllerView = hybridPlayBack.getIControllerView();
-        this.hybridPlayBack = hybridPlayBack;
-        startLoop();
+    public AutoSyncControllerComponent() {
     }
 
 
-    public void setOnAutoControllerListener(OnAutoControllerListener onAutoControllerListener) {
-        this.onAutoControllerListener = onAutoControllerListener;
+    public void addOnAutoControllerListener(OnAutoControllerListener onAutoControllerListener) {
+        autoControllerListeners.add(onAutoControllerListener);
     }
 
-    private void startLoop() {
+    public void removeAutoControllerListener(OnAutoControllerListener onAutoControllerListener) {
+        autoControllerListeners.remove(onAutoControllerListener);
+    }
+
+    public void startLoop(final HybridRulePlayBack hybridPlayBack) {
         stopLoop();
         disposableLoop = Observable.interval(1, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.computation())
@@ -53,35 +48,35 @@ public class AutoSyncControllerComponent {
                         long position = hybridPlayBack.getCurrentPosition();
                         long duration = hybridPlayBack.getDuration();
                         if (duration == 0) {
-                            if (iControllerView.getCTextView() != null) {
-                                iControllerView.getCTextView().setText("00:00");
+                            if (hybridPlayBack.getHybridPlayerView().getCTextView() != null) {
+                                hybridPlayBack.getHybridPlayerView().getCTextView().setText("00:00");
                             }
-                            if (iControllerView.getETextView() != null) {
-                                iControllerView.getETextView().setText("00:00");
+                            if (hybridPlayBack.getHybridPlayerView().getETextView() != null) {
+                                hybridPlayBack.getHybridPlayerView().getETextView().setText("00:00");
                             }
                         } else {
-                            if (onAutoControllerListener != null) {
+                            for (OnAutoControllerListener onAutoControllerListener : autoControllerListeners) {
                                 onAutoControllerListener.onProgressEffectRunning(position, duration);
                             }
                             long seekBarPosition = position * 1000L / duration;
-                            if (iControllerView.getSeekBar() != null) {
-                                iControllerView.getSeekBar().setProgress((int) seekBarPosition);
+                            if (hybridPlayBack.getHybridPlayerView().getSeekBar() != null) {
+                                hybridPlayBack.getHybridPlayerView().getSeekBar().setProgress((int) seekBarPosition);
                             }
 
-                            if (iControllerView.getETextView() != null) {
-                                iControllerView.getETextView().setText(foramtTime2String(duration));
+                            if (hybridPlayBack.getHybridPlayerView().getETextView() != null) {
+                                hybridPlayBack.getHybridPlayerView().getETextView().setText(foramtTime2String(duration));
                             }
-                            if (iControllerView.getCTextView() != null) {
-                                iControllerView.getCTextView().setText(foramtTime2String(position));
+                            if (hybridPlayBack.getHybridPlayerView().getCTextView() != null) {
+                                hybridPlayBack.getHybridPlayerView().getCTextView().setText(foramtTime2String(position));
                             }
                             int percent = hybridPlayBack.getBufferedPercentage();
                             int progress = 0;
-                            if (iControllerView.getSeekBar() != null) {
-                                progress = iControllerView.getSeekBar().getProgress();
+                            if (hybridPlayBack.getHybridPlayerView().getSeekBar() != null) {
+                                progress = hybridPlayBack.getHybridPlayerView().getSeekBar().getProgress();
                             }
                             int bufferPercent = progress + percent;
-                            if (iControllerView.getSeekBar() != null) {
-                                iControllerView.getSeekBar().setSecondaryProgress(bufferPercent);
+                            if (hybridPlayBack.getHybridPlayerView().getSeekBar() != null) {
+                                hybridPlayBack.getHybridPlayerView().getSeekBar().setSecondaryProgress(bufferPercent);
                             }
 
                         }
@@ -113,7 +108,7 @@ public class AutoSyncControllerComponent {
     }
 
     //TODO maybe include lifecycle handle
-    private void stopLoop() {
+    public void stopLoop() {
         if (disposableLoop != null && disposableLoop.isDisposed() == false) {
             disposableLoop.dispose();
         }

@@ -6,17 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.sample.app_player_sample.MainActivity">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/appCompatButton_normal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="基本" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/appCompatButton_recyclerView"
+    <com.boilerplate.lib_player.view.HybridPlayerView
+        android:id="@+id/hybridPlayerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RecyclerVview"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton_normal" />
+        android:layout_height="match_parent">
+
+
+        <com.boilerplate.lib_player.view.DefaultControllerView
+            android:id="@+id/controllerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </com.boilerplate.lib_player.view.HybridPlayerView>
 
 </android.support.constraint.ConstraintLayout>

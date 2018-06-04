@@ -25,7 +25,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':base')
-    implementation developmentDependencies.exoplayer2
+    api developmentDependencies.exoplayer2
 
     // Auto-Value
     compileOnly commonDependencies.autoValue

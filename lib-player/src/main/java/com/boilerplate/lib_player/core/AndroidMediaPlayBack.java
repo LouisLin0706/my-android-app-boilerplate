@@ -9,6 +9,7 @@ import android.view.Surface;
 import android.view.SurfaceView;
 
 import com.boilerplate.lib_player.extension.OverrideExtensionAdapter;
+import com.boilerplate.lib_player.view.HybridPlayerView;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,6 +36,7 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
         this.hybridPlayerView = hybridPlayerView;
         this.eventListener = new EventListener();
         volume = 1;
+        initialize();
     }
 
     @Override
@@ -105,6 +107,7 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
 
     @Override
     public void release() {
+        super.release();
         if (mediaPlayer != null) {
             shouldAutoPlay = mediaPlayer.isPlaying();
             mediaPlayer.release();
@@ -129,6 +132,7 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
 
     @Override
     public void initialize() {
+        super.initialize();
         if (mediaPlayer == null) {
             mediaPlayer = new MediaPlayer();
         }

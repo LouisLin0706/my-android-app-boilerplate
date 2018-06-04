@@ -1,10 +1,11 @@
-package com.boilerplate.lib_player.core;
+package com.boilerplate.lib_player.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -12,10 +13,10 @@ import android.widget.TextView;
 import com.boilerplate.lib_player.R;
 
 /**
- * Created by Louis on 2017/6/1.
+ * Created by Louis on 2018/5/29.
  */
 
-public class DefaultIControllerView extends FrameLayout implements IControllerView {
+public class DefaultControllerView extends IControllerSpec {
 
     public View mRoot;
     public SeekBar mProgress;
@@ -25,10 +26,19 @@ public class DefaultIControllerView extends FrameLayout implements IControllerVi
     public ImageButton mRewButton;
     public TextView textViewTitle;
 
-    public DefaultIControllerView(@NonNull Context context) {
-        super(context);
-        addView(makeControllerView());
+    public DefaultControllerView(@NonNull Context context) {
+        this(context, null);
     }
+
+    public DefaultControllerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public DefaultControllerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+
 
     @Override
     public SeekBar getSeekBar() {
@@ -50,11 +60,14 @@ public class DefaultIControllerView extends FrameLayout implements IControllerVi
         return mPauseButton;
     }
 
-
-    @NonNull
     @Override
     public View getMainView() {
         return this;
+    }
+
+    @Override
+    public void init() {
+        addView(makeControllerView());
     }
 
 
@@ -66,14 +79,13 @@ public class DefaultIControllerView extends FrameLayout implements IControllerVi
     }
 
     private void initControllerView(View v) {
-        mPauseButton = (ImageButton) v.findViewById(R.id.pause_2);
-        mFfwdButton = (ImageButton) v.findViewById(R.id.ffwd_2);
-        mRewButton = (ImageButton) v.findViewById(R.id.rew_2);
-        mProgress = (SeekBar) v.findViewById(R.id.mediacontroller_progress_2);
-        textViewTitle = (TextView) v.findViewById(R.id.textView_two_title);
-        mEndTime = (TextView) v.findViewById(R.id.time_2);
-        mCurrentTime = (TextView) v.findViewById(R.id.time_current_2);
+        mPauseButton = v.findViewById(R.id.pause_2);
+        mFfwdButton = v.findViewById(R.id.ffwd_2);
+        mRewButton = v.findViewById(R.id.rew_2);
+        mProgress = v.findViewById(R.id.mediacontroller_progress_2);
+        textViewTitle = v.findViewById(R.id.textView_two_title);
+        mEndTime = v.findViewById(R.id.time_2);
+        mCurrentTime = v.findViewById(R.id.time_current_2);
     }
-
 
 }

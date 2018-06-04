@@ -1,13 +1,17 @@
-package com.boilerplate.lib_player.core;
+package com.boilerplate.lib_player.view;
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.TextureView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.google.android.exoplayer2.text.Cue;
 import com.google.android.exoplayer2.text.TextOutput;
@@ -20,14 +24,53 @@ import java.util.List;
  * Created by Louis on 2018/4/15.
  */
 
-public abstract class HybridPlayerView extends FrameLayout implements VideoListener, TextOutput, MediaPlayer.OnVideoSizeChangedListener {
+public class HybridPlayerView extends IControllerSpec implements VideoListener, TextOutput, MediaPlayer.OnVideoSizeChangedListener {
 
     private AspectRatioFrameLayout aspectRatioFrameLayout;
-    public IControllerView iControllerView;
+    protected IControllerSpec playerControllerView;
     private TextureView textureView;
 
+
     public HybridPlayerView(@NonNull Context context) {
-        super(context);
+        this(context, null);
+    }
+
+    public HybridPlayerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public HybridPlayerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+
+    @Override
+    public SeekBar getSeekBar() {
+        return playerControllerView.getSeekBar();
+    }
+
+    @Override
+    public TextView getCTextView() {
+        return playerControllerView.getCTextView();
+    }
+
+    @Override
+    public TextView getETextView() {
+        return playerControllerView.getETextView();
+    }
+
+    @Override
+    public View getPlayPauseView() {
+        return playerControllerView.getPlayPauseView();
+    }
+
+    @Override
+    public View getMainView() {
+        return playerControllerView.getMainView();
+    }
+
+    @Override
+    public void init() {
         FrameLayout.LayoutParams paramsAspect = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         paramsAspect.gravity = Gravity.CENTER;
         aspectRatioFrameLayout = new AspectRatioFrameLayout(getContext());
@@ -35,9 +78,21 @@ public abstract class HybridPlayerView extends FrameLayout implements VideoListe
 
         //the view will render video source
         aspectRatioFrameLayout.addView(getTextureView());
+    }
 
-        iControllerView = getIControllerView();
-        addView(iControllerView.getMainView());
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        // Ensure the movable child list.
+        final int childCount = getChildCount();
+        for (int i = 0; i < childCount; ++i) {
+            final View child = getChildAt(i);
+            final LayoutParams params = (LayoutParams) child.getLayoutParams();
+            if (params == null) continue;
+            if (child instanceof IControllerSpec) {
+                playerControllerView = (IControllerSpec) child;
+            }
+        }
     }
 
     @Override
@@ -62,7 +117,7 @@ public abstract class HybridPlayerView extends FrameLayout implements VideoListe
 
     }
 
-    protected TextureView getTextureView() {
+    public TextureView getTextureView() {
         if (textureView == null) {
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             textureView = new TextureView(getContext());
@@ -71,18 +126,13 @@ public abstract class HybridPlayerView extends FrameLayout implements VideoListe
         return textureView;
     }
 
-    @Nullable
-    protected IControllerView getIControllerView() {
-        return new DefaultIControllerView(getContext());
-    }
-
-    protected void showController() {
-        iControllerView.getMainView().setVisibility(VISIBLE);
+    public void showController() {
+        playerControllerView.setVisibility(VISIBLE);
     }
 
 
-    protected void hideController() {
-        iControllerView.getMainView().setVisibility(GONE);
+    public void hideController() {
+        playerControllerView.setVisibility(GONE);
     }
 
 }

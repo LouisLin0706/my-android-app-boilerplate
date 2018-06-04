@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.boilerplate.lib_player.extension.OverrideExtensionAdapter;
+import com.boilerplate.lib_player.view.HybridPlayerView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -68,7 +69,6 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
     private AdsLoader adsLoader;
     private Handler mainHandler;
     private ViewGroup adUiViewGroup;
-    private DataSource.Factory mediaDataSourceFactory;
 
     public ExoPlayBack(@NonNull Context context) {
         this(context, null);
@@ -79,8 +79,8 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
         this.context = context;
         mainHandler = new Handler();
         this.hybridPlayerView = hybridPlayerView;
-        this.mediaDataSourceFactory = buildDataSourceFactory(true);
         this.userAgent = Util.getUserAgent(context, "HybridExo");
+        initialize();
     }
 
     @Override
@@ -164,6 +164,7 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
 
     @Override
     public void release() {
+        super.release();
         if (player != null) {
             shouldAutoPlay = player.getPlayWhenReady();
             updateResumePosition();
@@ -188,6 +189,7 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
 
     @Override
     public void initialize() {
+        super.initialize();
         boolean needNewPlayer = player == null;
         if (needNewPlayer) {
             TrackSelection.Factory adaptiveTrackSelectionFactory =
@@ -306,24 +308,24 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
             OverrideExtensionAdapter overrideExtension,
             @Nullable Handler handler,
             @Nullable MediaSourceEventListener listener) {
-        @C.ContentType int type = TextUtils.isEmpty(overrideExtension.getOverrideSourceType()) ? Util.inferContentType(uri)
+        @C.ContentType int type = (overrideExtension == null || TextUtils.isEmpty(overrideExtension.getOverrideSourceType())) ? Util.inferContentType(uri)
                 : Util.inferContentType("." + overrideExtension.getOverrideSourceType());
         switch (type) {
             case C.TYPE_DASH:
                 return new DashMediaSource.Factory(
-                        new DefaultDashChunkSource.Factory(mediaDataSourceFactory),
+                        new DefaultDashChunkSource.Factory(buildHttpDataSourceFactory(true)),
                         buildDataSourceFactory(false))
                         .createMediaSource(uri, handler, listener);
             case C.TYPE_SS:
                 return new SsMediaSource.Factory(
-                        new DefaultSsChunkSource.Factory(mediaDataSourceFactory),
+                        new DefaultSsChunkSource.Factory(buildHttpDataSourceFactory(true)),
                         buildDataSourceFactory(false))
                         .createMediaSource(uri, handler, listener);
             case C.TYPE_HLS:
-                return new HlsMediaSource.Factory(mediaDataSourceFactory)
+                return new HlsMediaSource.Factory(buildHttpDataSourceFactory(true))
                         .createMediaSource(uri, handler, listener);
             case C.TYPE_OTHER:
-                return new ExtractorMediaSource.Factory(mediaDataSourceFactory)
+                return new ExtractorMediaSource.Factory(buildHttpDataSourceFactory(true))
                         .createMediaSource(uri, handler, listener);
             default: {
                 throw new IllegalStateException("Unsupported type: " + type);

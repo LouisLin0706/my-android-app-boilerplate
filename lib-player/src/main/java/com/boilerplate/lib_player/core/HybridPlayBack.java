@@ -20,7 +20,7 @@ public abstract class HybridPlayBack {
 
 
     protected CopyOnWriteArraySet<IHybridPlayerEventListener> iHybridPlayerEventListeners;
-    protected boolean shouldAutoPlay;
+    protected boolean shouldAutoPlay = true;
     protected boolean isBufferIng;
     protected boolean isPrepare;
 
@@ -51,11 +51,11 @@ public abstract class HybridPlayBack {
         iHybridPlayerEventListeners.remove(iHybridPlayerEventListener);
     }
 
-    public HybridRulePlayBack createInstance(Context context) {
+    public static HybridLifecyclePlayBack createInstance(Context context) {
         return createInstance(context, TYPE_DEFAULT);
     }
 
-    public HybridLifecyclePlayBack createInstance(Context context, @PlaybackType int type) {
+    public static HybridLifecyclePlayBack createInstance(Context context, @PlaybackType int type) {
         HybridLifecyclePlayBack hybridPlayBack;
         switch (type) {
             case TYPE_ANDROID_NATIVE_PLAYBACK:

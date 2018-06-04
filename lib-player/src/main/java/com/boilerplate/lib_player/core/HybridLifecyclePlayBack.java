@@ -1,5 +1,6 @@
 package com.boilerplate.lib_player.core;
 
+import com.boilerplate.lib_player.view.HybridPlayerView;
 import com.google.android.exoplayer2.util.Util;
 
 /**

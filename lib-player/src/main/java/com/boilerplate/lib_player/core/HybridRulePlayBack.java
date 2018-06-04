@@ -3,23 +3,30 @@ package com.boilerplate.lib_player.core;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 
+import com.boilerplate.lib_player.component.AutoSyncControllerComponent;
+import com.boilerplate.lib_player.view.HybridPlayerView;
+
 /**
  * Created by Louis on 2018/4/13.
  */
 
 public abstract class HybridRulePlayBack extends HybridPlayBack {
 
-    protected HybridPlayerView hybridPlayerView;
+    public HybridPlayerView hybridPlayerView;
+    private AutoSyncControllerComponent autoSyncControllerComponent;
 
     public HybridRulePlayBack(HybridPlayerView hybridPlayerView) {
         this.hybridPlayerView = hybridPlayerView;
         setUpSurfaceView();
     }
 
-    public IControllerView getIControllerView() {
-        return hybridPlayerView.getIControllerView();
+    public void setAutoSyncControllerComponent(AutoSyncControllerComponent autoSyncControllerComponent) {
+        this.autoSyncControllerComponent = autoSyncControllerComponent;
     }
 
+    public HybridPlayerView getHybridPlayerView() {
+        return hybridPlayerView;
+    }
 
     public void setHybridPlayerView(HybridPlayerView hybridPlayerView) {
         this.hybridPlayerView = hybridPlayerView;
@@ -54,6 +61,20 @@ public abstract class HybridRulePlayBack extends HybridPlayBack {
             });
         } else {
             // do nothing
+        }
+    }
+
+    @Override
+    public void release() {
+        if (autoSyncControllerComponent != null) {
+            autoSyncControllerComponent.stopLoop();
+        }
+    }
+
+    @Override
+    public void initialize() {
+        if (autoSyncControllerComponent != null) {
+            autoSyncControllerComponent.startLoop(this);
         }
     }
 
