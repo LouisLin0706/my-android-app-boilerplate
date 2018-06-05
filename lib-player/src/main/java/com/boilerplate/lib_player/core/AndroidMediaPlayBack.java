@@ -156,21 +156,21 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
 
         @Override
         public void onCompletion(MediaPlayer mp) {
-            for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+            for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                 iHybridPlayerEventListener.onCompletion(AndroidMediaPlayBack.this);
             }
         }
 
         @Override
         public void onPrepared(MediaPlayer mp) {
-            for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+            for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                 iHybridPlayerEventListener.onPrepared(AndroidMediaPlayBack.this);
             }
         }
 
         @Override
         public boolean onError(MediaPlayer mp, int what, int extra) {
-            for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+            for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                 iHybridPlayerEventListener.onError(AndroidMediaPlayBack.this);
             }
             return true;
@@ -181,13 +181,13 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
             switch (what) {
                 case MediaPlayer.MEDIA_INFO_BUFFERING_START:
                     isBufferIng = true;
-                    for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+                    for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                         iHybridPlayerEventListener.onBufferStart();
                     }
                     break;
                 case MediaPlayer.MEDIA_INFO_BUFFERING_END:
                     isBufferIng = false;
-                    for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+                    for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                         iHybridPlayerEventListener.onBufferEnd();
                     }
                     break;

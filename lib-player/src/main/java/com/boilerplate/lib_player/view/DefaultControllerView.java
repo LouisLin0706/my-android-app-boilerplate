@@ -3,6 +3,7 @@ package com.boilerplate.lib_player.view;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.boilerplate.lib_player.R;
+import com.boilerplate.lib_player.core.IHybridPlayerEventAdapter;
 
 /**
  * Created by Louis on 2018/5/29.
@@ -39,7 +41,6 @@ public class DefaultControllerView extends IControllerSpec {
     }
 
 
-
     @Override
     public SeekBar getSeekBar() {
         return mProgress;
@@ -63,6 +64,21 @@ public class DefaultControllerView extends IControllerSpec {
     @Override
     public View getMainView() {
         return this;
+    }
+
+    @Override
+    public IHybridPlayerEventAdapter getIHybridPlayerEventAdapter() {
+        return new IHybridPlayerEventAdapter() {
+            @Override
+            public void onStatePlay() {
+                mPauseButton.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.exo_controls_pause));
+            }
+
+            @Override
+            public void onStatePause() {
+                mPauseButton.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.exo_controls_play));
+            }
+        };
     }
 
     @Override

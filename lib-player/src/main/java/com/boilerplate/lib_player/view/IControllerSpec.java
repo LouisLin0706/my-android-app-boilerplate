@@ -9,6 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.boilerplate.lib_player.core.IHybridPlayerEventAdapter;
+
 /**
  * Created by Louis on 2018/5/29.
  */
@@ -37,6 +39,8 @@ public abstract class IControllerSpec extends FrameLayout {
     public abstract View getPlayPauseView();
 
     public abstract View getMainView();
+
+    public abstract IHybridPlayerEventAdapter getIHybridPlayerEventAdapter();
 
     public abstract void init();
 }

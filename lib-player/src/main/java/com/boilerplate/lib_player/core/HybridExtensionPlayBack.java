@@ -10,13 +10,13 @@ import com.boilerplate.lib_player.view.HybridPlayerView;
  * Created by Louis on 2018/4/13.
  */
 
-public abstract class HybridRulePlayBack extends HybridPlayBack {
+public abstract class HybridExtensionPlayBack extends HybridPlayBack {
 
     public HybridPlayerView hybridPlayerView;
     private AutoSyncControllerComponent autoSyncControllerComponent;
 
-    public HybridRulePlayBack(HybridPlayerView hybridPlayerView) {
-        this.hybridPlayerView = hybridPlayerView;
+    public HybridExtensionPlayBack(HybridPlayerView hybridPlayerView) {
+        setHybridPlayerView(hybridPlayerView);
         setUpSurfaceView();
     }
 
@@ -29,8 +29,16 @@ public abstract class HybridRulePlayBack extends HybridPlayBack {
     }
 
     public void setHybridPlayerView(HybridPlayerView hybridPlayerView) {
-        this.hybridPlayerView = hybridPlayerView;
-        setUpSurfaceView();
+        if (this.hybridPlayerView != null && this.hybridPlayerView.getIHybridPlayerEventAdapter() != null) {
+            removeHybridEventListener(this.hybridPlayerView.getIHybridPlayerEventAdapter());
+        }
+        if (hybridPlayerView != null && hybridPlayerView.getIHybridPlayerEventAdapter() != null) {
+            addHybridEventListener(hybridPlayerView.getIHybridPlayerEventAdapter());
+        }
+        if (hybridPlayerView != null) {
+            this.hybridPlayerView = hybridPlayerView;
+            setUpSurfaceView();
+        }
     }
 
 

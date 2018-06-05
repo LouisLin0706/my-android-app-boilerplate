@@ -78,7 +78,6 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
         super(hybridPlayerView);
         this.context = context;
         mainHandler = new Handler();
-        this.hybridPlayerView = hybridPlayerView;
         this.userAgent = Util.getUserAgent(context, "HybridExo");
         initialize();
     }
@@ -405,28 +404,37 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
             switch (playbackState) {
                 case Player.STATE_ENDED:
-                    for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+                    for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                         iHybridPlayerEventListener.onCompletion(ExoPlayBack.this);
                     }
                     break;
                 case Player.STATE_READY:
                     if (isBufferIng == true && playWhenReady) {
                         isBufferIng = false;
-                        for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+                        for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                             iHybridPlayerEventListener.onBufferEnd();
                         }
                     }
                     if (isPrepare == false) {
-                        for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+                        for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                             iHybridPlayerEventListener.onPrepared(ExoPlayBack.this);
                         }
                         isPrepare = true;
+                    }
+                    if (playWhenReady) {
+                        for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
+                            iHybridPlayerEventListener.onStatePlay();
+                        }
+                    } else {
+                        for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
+                            iHybridPlayerEventListener.onStatePause();
+                        }
                     }
                     break;
 
                 case Player.STATE_BUFFERING:
                     isBufferIng = true;
-                    for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+                    for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                         iHybridPlayerEventListener.onBufferStart();
                     }
                     break;
@@ -451,7 +459,7 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
 
         @Override
         public void onPlayerError(ExoPlaybackException e) {
-            for (IHybridPlayerEventListener iHybridPlayerEventListener : iHybridPlayerEventListeners) {
+            for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                 iHybridPlayerEventListener.onError(ExoPlayBack.this);
             }
             String errorString = null;

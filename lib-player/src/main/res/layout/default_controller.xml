@@ -42,7 +42,7 @@
 
             <ImageButton
                 android:id="@+id/pause_2"
-                style="@android:style/MediaButton.Play" />
+                style="@android:style/MediaButton.Pause" />
 
             <ImageButton
                 android:id="@+id/ffwd_2"

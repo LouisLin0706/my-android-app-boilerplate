@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public abstract class HybridPlayBack {
 
 
-    protected CopyOnWriteArraySet<IHybridPlayerEventListener> iHybridPlayerEventListeners;
+    protected CopyOnWriteArraySet<IHybridPlayerEventAdapter> hybridPlayerEventAdapters;
     protected boolean shouldAutoPlay = true;
     protected boolean isBufferIng;
     protected boolean isPrepare;
@@ -40,15 +40,15 @@ public abstract class HybridPlayBack {
     }
 
     public HybridPlayBack() {
-        iHybridPlayerEventListeners = new CopyOnWriteArraySet<>();
+        hybridPlayerEventAdapters = new CopyOnWriteArraySet<>();
     }
 
-    public void addHybridEventListener(IHybridPlayerEventListener iHybridPlayerEventListener) {
-        iHybridPlayerEventListeners.add(iHybridPlayerEventListener);
+    public void addHybridEventListener(IHybridPlayerEventAdapter iHybridPlayerEventListener) {
+        hybridPlayerEventAdapters.add(iHybridPlayerEventListener);
     }
 
-    public void removeHybridEventListener(IHybridPlayerEventListener iHybridPlayerEventListener) {
-        iHybridPlayerEventListeners.remove(iHybridPlayerEventListener);
+    public void removeHybridEventListener(IHybridPlayerEventAdapter iHybridPlayerEventListener) {
+        hybridPlayerEventAdapters.remove(iHybridPlayerEventListener);
     }
 
     public static HybridLifecyclePlayBack createInstance(Context context) {

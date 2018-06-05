@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.boilerplate.lib_player.core.IHybridPlayerEventAdapter;
 import com.google.android.exoplayer2.text.Cue;
 import com.google.android.exoplayer2.text.TextOutput;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -67,6 +68,11 @@ public class HybridPlayerView extends IControllerSpec implements VideoListener, 
     @Override
     public View getMainView() {
         return playerControllerView.getMainView();
+    }
+
+    @Override
+    public IHybridPlayerEventAdapter getIHybridPlayerEventAdapter() {
+        return playerControllerView.getIHybridPlayerEventAdapter();
     }
 
     @Override

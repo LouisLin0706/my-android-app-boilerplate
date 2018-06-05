@@ -7,7 +7,7 @@ import com.google.android.exoplayer2.util.Util;
  * Created by Louis on 2018/5/24.
  */
 
-public abstract class HybridLifecyclePlayBack extends HybridRulePlayBack {
+public abstract class HybridLifecyclePlayBack extends HybridExtensionPlayBack {
 
     public HybridLifecyclePlayBack(HybridPlayerView hybridPlayerView) {
         super(hybridPlayerView);
