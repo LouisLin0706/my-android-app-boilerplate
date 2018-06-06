@@ -16,6 +16,9 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
 
     public HybridPlayerView hybridPlayerView;
     private AutoSyncControllerComponent autoSyncControllerComponent;
+
+    protected int resumeWindow;
+    protected long resumePosition;
     protected Uri currentUri;
     protected OverrideExtensionAdapter currentOverrideExtensionAdapter;
 
@@ -46,8 +49,13 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
     }
 
     @Override
-    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
-        super.setDataSource(path, overrideExtensionAdapter);
+    public void transformCorePlayer(HybridLifecyclePlayBack hybridLifecyclePlayBack) {
+
+    }
+
+    @Override
+    public void preSetDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
+        super.preSetDataSource(path, overrideExtensionAdapter);
         this.currentUri = path;
         this.currentOverrideExtensionAdapter = overrideExtensionAdapter;
 
@@ -96,8 +104,9 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
             autoSyncControllerComponent.startLoop(this);
         }
         if (currentUri != null) {
-            setDataSource(currentUri, currentOverrideExtensionAdapter);
+            setDataSourceToPlay();
         }
+        setUpSurfaceView();
     }
 
     protected abstract void setSurface(SurfaceTexture surface);

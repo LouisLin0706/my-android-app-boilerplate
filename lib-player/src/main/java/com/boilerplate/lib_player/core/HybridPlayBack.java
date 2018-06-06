@@ -76,9 +76,13 @@ public abstract class HybridPlayBack {
         return hybridPlayBack;
     }
 
-    public abstract void setDataSource(Uri path);
+    public abstract void preSetDataSource(Uri path);
 
-    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
+    public void preSetDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
+
+    }
+
+    public void setDataSourceToPlay() {
         if (isPrepare) {
             release();
             initialize();
@@ -118,4 +122,6 @@ public abstract class HybridPlayBack {
     public abstract void initialize();
 
     public abstract void setPlayerView(Context context, SurfaceView surfaceView);
+
+    public abstract void transformCorePlayer(HybridLifecyclePlayBack hybridLifecyclePlayBack);
 }

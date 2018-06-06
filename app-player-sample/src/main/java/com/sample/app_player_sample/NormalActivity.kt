@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import com.boilerplate.lib_player.component.AutoSyncControllerComponent
 import com.boilerplate.lib_player.core.HybridLifecyclePlayBack
 import com.boilerplate.lib_player.core.HybridPlayBack
+import com.boilerplate.lib_player.core.HybridPlayBack.TYPE_ANDROID_NATIVE_PLAYBACK
 import com.boilerplate.lib_player.view.HybridPlayerView
 
 class NormalActivity : AppCompatActivity() {
@@ -25,14 +26,14 @@ class NormalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_normal)
         val hybridPlayerView = findViewById<HybridPlayerView>(R.id.hybridPlayerView)
-        hybridLifecyclePlayBack = HybridPlayBack.createInstance(this)
+        hybridLifecyclePlayBack = HybridPlayBack.createInstance(this, TYPE_ANDROID_NATIVE_PLAYBACK)
         hybridLifecyclePlayBack?.setHybridPlayerView(hybridPlayerView)
         hybridLifecyclePlayBack?.setAutoSyncControllerComponent(AutoSyncControllerComponent())
         play()
     }
 
     private fun play() {
-        hybridLifecyclePlayBack?.setDataSource(sampleUrl)
+        hybridLifecyclePlayBack?.preSetDataSource(sampleUrl)
     }
 
     override fun onPause() {

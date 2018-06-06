@@ -40,16 +40,24 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
     }
 
     @Override
-    public void setDataSource(Uri path) {
-        setDataSource(path, null);
+    public void preSetDataSource(Uri path) {
+        preSetDataSource(path, null);
     }
 
     @Override
-    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
+    public void preSetDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
+        super.preSetDataSource(path, overrideExtensionAdapter);
+    }
+
+    @Override
+    public void setDataSourceToPlay() {
+        super.setDataSourceToPlay();
         Map<String, String> headers = new HashMap<String, String>();
-        headers.put(overrideExtensionAdapter.getAuthorizationHeader(), overrideExtensionAdapter.getAuthorizationToken());
+        if (currentOverrideExtensionAdapter != null) {
+            headers.put(currentOverrideExtensionAdapter.getAuthorizationHeader(), currentOverrideExtensionAdapter.getAuthorizationToken());
+        }
         try {
-            mediaPlayer.setDataSource(context, path, headers);
+            mediaPlayer.setDataSource(context, currentUri, headers);
             mediaPlayer.setOnVideoSizeChangedListener(hybridPlayerView);
             mediaPlayer.setOnCompletionListener(eventListener);
             mediaPlayer.setOnBufferingUpdateListener(eventListener);
@@ -109,6 +117,8 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
     public void release() {
         super.release();
         if (mediaPlayer != null) {
+            resumeWindow = 0;
+            resumePosition = Math.max(0, mediaPlayer.getCurrentPosition());
             shouldAutoPlay = mediaPlayer.isPlaying();
             mediaPlayer.release();
             mediaPlayer = null;
@@ -149,6 +159,8 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
     }
 
     private class EventListener implements MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener {
+
+
         @Override
         public void onBufferingUpdate(MediaPlayer mp, int percent) {
 
@@ -163,6 +175,12 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
 
         @Override
         public void onPrepared(MediaPlayer mp) {
+            mp.seekTo((int) resumePosition);
+            if (shouldAutoPlay) {
+                mp.start();
+            } else {
+                mp.pause();
+            }
             for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
                 iHybridPlayerEventListener.onPrepared(AndroidMediaPlayBack.this);
             }

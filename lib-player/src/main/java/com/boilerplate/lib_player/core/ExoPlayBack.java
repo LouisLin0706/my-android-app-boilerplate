@@ -62,8 +62,6 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
     private DefaultTrackSelector trackSelector;
     private EventLogger eventLogger;
     private Context context;
-    private int resumeWindow;
-    private long resumePosition;
     private boolean inErrorState;
     protected String userAgent;
     private AdsLoader adsLoader;
@@ -83,19 +81,23 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
     }
 
     @Override
-    public void setDataSource(Uri path) {
-        this.setDataSource(path, null);
+    public void preSetDataSource(Uri path) {
+        this.preSetDataSource(path, null);
     }
 
     @Override
-    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtension) {
-        super.setDataSource(path, overrideExtension);
+    public void preSetDataSource(Uri path, OverrideExtensionAdapter overrideExtension) {
+        super.preSetDataSource(path, overrideExtension);
+    }
+
+    @Override
+    public void setDataSourceToPlay() {
+        super.setDataSourceToPlay();
         boolean haveResumePosition = resumeWindow != C.INDEX_UNSET;
         if (haveResumePosition) {
             player.seekTo(resumeWindow, resumePosition);
         }
-
-        player.prepare(buildMediaSource(path, overrideExtension, mainHandler, eventLogger), !haveResumePosition, false);
+        player.prepare(buildMediaSource(currentUri, currentOverrideExtensionAdapter, mainHandler, eventLogger), !haveResumePosition, false);
         inErrorState = false;
     }
 
