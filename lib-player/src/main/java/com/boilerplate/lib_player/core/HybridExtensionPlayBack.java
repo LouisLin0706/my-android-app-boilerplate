@@ -1,9 +1,11 @@
 package com.boilerplate.lib_player.core;
 
 import android.graphics.SurfaceTexture;
+import android.net.Uri;
 import android.view.TextureView;
 
 import com.boilerplate.lib_player.component.AutoSyncControllerComponent;
+import com.boilerplate.lib_player.extension.OverrideExtensionAdapter;
 import com.boilerplate.lib_player.view.HybridPlayerView;
 
 /**
@@ -14,6 +16,8 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
 
     public HybridPlayerView hybridPlayerView;
     private AutoSyncControllerComponent autoSyncControllerComponent;
+    protected Uri currentUri;
+    protected OverrideExtensionAdapter currentOverrideExtensionAdapter;
 
     public HybridExtensionPlayBack(HybridPlayerView hybridPlayerView) {
         setHybridPlayerView(hybridPlayerView);
@@ -41,6 +45,13 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
         }
     }
 
+    @Override
+    public void setDataSource(Uri path, OverrideExtensionAdapter overrideExtensionAdapter) {
+        super.setDataSource(path, overrideExtensionAdapter);
+        this.currentUri = path;
+        this.currentOverrideExtensionAdapter = overrideExtensionAdapter;
+
+    }
 
     protected void setUpSurfaceView() {
         if (hybridPlayerView != null && hybridPlayerView.getTextureView().isAvailable()) {
@@ -83,6 +94,9 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
     public void initialize() {
         if (autoSyncControllerComponent != null) {
             autoSyncControllerComponent.startLoop(this);
+        }
+        if (currentUri != null) {
+            setDataSource(currentUri, currentOverrideExtensionAdapter);
         }
     }
 

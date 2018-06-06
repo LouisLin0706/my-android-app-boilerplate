@@ -7,9 +7,7 @@ import com.boilerplate.lib_player.core.HybridExtensionPlayBack;
 import com.boilerplate.lib_player.util.PlayerUtils;
 
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -140,10 +138,10 @@ public class AutoSyncControllerComponent {
                             }
 
                             if (hybridPlayBack.getHybridPlayerView().getETextView() != null) {
-                                hybridPlayBack.getHybridPlayerView().getETextView().setText(foramtTime2String(duration));
+                                hybridPlayBack.getHybridPlayerView().getETextView().setText(PlayerUtils.foramtTime2String(duration));
                             }
                             if (hybridPlayBack.getHybridPlayerView().getCTextView() != null) {
-                                hybridPlayBack.getHybridPlayerView().getCTextView().setText(foramtTime2String(position));
+                                hybridPlayBack.getHybridPlayerView().getCTextView().setText(PlayerUtils.foramtTime2String(position));
                             }
                             int percent = hybridPlayBack.getBufferedPercentage();
                             int progress = 0;
@@ -163,24 +161,6 @@ public class AutoSyncControllerComponent {
 
                     }
                 });
-    }
-
-    private String foramtTime2String(long timeMs) {
-        StringBuilder mFormatBuilder = new StringBuilder();
-        Formatter mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
-
-        long totalSeconds = timeMs / 1000;
-
-        long seconds = totalSeconds % 60;
-        long minutes = (totalSeconds / 60) % 60;
-        long hours = totalSeconds / 3600;
-
-        mFormatBuilder.setLength(0);
-        if (hours > 0) {
-            return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds).toString();
-        } else {
-            return mFormatter.format("%02d:%02d", minutes, seconds).toString();
-        }
     }
 
     //TODO maybe include lifecycle handle

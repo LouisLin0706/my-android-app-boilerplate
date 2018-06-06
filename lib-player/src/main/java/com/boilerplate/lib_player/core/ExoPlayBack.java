@@ -188,7 +188,6 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
 
     @Override
     public void initialize() {
-        super.initialize();
         boolean needNewPlayer = player == null;
         if (needNewPlayer) {
             TrackSelection.Factory adaptiveTrackSelectionFactory =
@@ -243,6 +242,7 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
                 player.addTextOutput(hybridPlayerView);
             }
         }
+        super.initialize();
     }
 
     private void releaseAdsLoader() {

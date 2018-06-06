@@ -132,10 +132,10 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
 
     @Override
     public void initialize() {
-        super.initialize();
         if (mediaPlayer == null) {
             mediaPlayer = new MediaPlayer();
         }
+        super.initialize();
     }
 
     @Override
