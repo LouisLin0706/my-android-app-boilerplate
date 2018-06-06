@@ -21,4 +21,25 @@
 
     </com.boilerplate.lib_player.view.HybridPlayerView>
 
+
+    <TextView
+        android:id="@+id/textView_current_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black_effective"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Exoplayer" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switchCompat_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_current_player"
+        app:layout_constraintLeft_toRightOf="@+id/textView_current_player"
+        app:layout_constraintTop_toTopOf="@+id/textView_current_player" />
+
 </android.support.constraint.ConstraintLayout>

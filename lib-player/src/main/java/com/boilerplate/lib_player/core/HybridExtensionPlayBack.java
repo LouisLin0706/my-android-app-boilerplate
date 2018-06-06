@@ -22,6 +22,42 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
     protected Uri currentUri;
     protected OverrideExtensionAdapter currentOverrideExtensionAdapter;
 
+    public AutoSyncControllerComponent getAutoSyncControllerComponent() {
+        return autoSyncControllerComponent;
+    }
+
+    public int getResumeWindow() {
+        return resumeWindow;
+    }
+
+    public void setResumeWindow(int resumeWindow) {
+        this.resumeWindow = resumeWindow;
+    }
+
+    public long getResumePosition() {
+        return resumePosition;
+    }
+
+    public Uri getCurrentUri() {
+        return currentUri;
+    }
+
+    public OverrideExtensionAdapter getCurrentOverrideExtensionAdapter() {
+        return currentOverrideExtensionAdapter;
+    }
+
+    public void setCurrentOverrideExtensionAdapter(OverrideExtensionAdapter currentOverrideExtensionAdapter) {
+        this.currentOverrideExtensionAdapter = currentOverrideExtensionAdapter;
+    }
+
+    public void setCurrentUri(Uri currentUri) {
+        this.currentUri = currentUri;
+    }
+
+    public void setResumePosition(long resumePosition) {
+        this.resumePosition = resumePosition;
+    }
+
     public HybridExtensionPlayBack(HybridPlayerView hybridPlayerView) {
         setHybridPlayerView(hybridPlayerView);
         setUpSurfaceView();
@@ -49,8 +85,16 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
     }
 
     @Override
-    public void transformCorePlayer(HybridLifecyclePlayBack hybridLifecyclePlayBack) {
-
+    public HybridLifecyclePlayBack transformCorePlayer(HybridLifecyclePlayBack oldHybridLifecyclePlayBack) {
+        setResumePosition(oldHybridLifecyclePlayBack.getResumePosition());
+        setResumeWindow(oldHybridLifecyclePlayBack.getResumeWindow());
+        setCurrentUri(oldHybridLifecyclePlayBack.getCurrentUri());
+        setCurrentOverrideExtensionAdapter(oldHybridLifecyclePlayBack.getCurrentOverrideExtensionAdapter());
+        setHybridPlayerView(oldHybridLifecyclePlayBack.getHybridPlayerView());
+        setAutoSyncControllerComponent(oldHybridLifecyclePlayBack.getAutoSyncControllerComponent());
+        oldHybridLifecyclePlayBack.release();
+        initialize();
+        return null;
     }
 
     @Override
@@ -110,5 +154,7 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
     }
 
     protected abstract void setSurface(SurfaceTexture surface);
+
+
 }
 

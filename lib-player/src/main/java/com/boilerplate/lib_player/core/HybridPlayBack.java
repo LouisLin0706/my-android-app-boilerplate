@@ -123,5 +123,5 @@ public abstract class HybridPlayBack {
 
     public abstract void setPlayerView(Context context, SurfaceView surfaceView);
 
-    public abstract void transformCorePlayer(HybridLifecyclePlayBack hybridLifecyclePlayBack);
+    public abstract HybridLifecyclePlayBack transformCorePlayer(HybridLifecyclePlayBack hybridLifecyclePlayBack);
 }

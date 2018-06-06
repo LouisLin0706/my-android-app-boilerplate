@@ -73,12 +73,18 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
     @Override
     public void play() {
         mediaPlayer.start();
-
+        isBufferIng = false;
+        for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
+            iHybridPlayerEventListener.onStatePlay();
+        }
     }
 
     @Override
     public void pause() {
         mediaPlayer.pause();
+        for (IHybridPlayerEventListener iHybridPlayerEventListener : hybridPlayerEventAdapters) {
+            iHybridPlayerEventListener.onStatePause();
+        }
     }
 
     @Override

@@ -40,4 +40,10 @@ public abstract class HybridLifecyclePlayBack extends HybridExtensionPlayBack {
             release();
         }
     }
+
+    @Override
+    public HybridLifecyclePlayBack transformCorePlayer(HybridLifecyclePlayBack hybridLifecyclePlayBack) {
+        super.transformCorePlayer(hybridLifecyclePlayBack);
+        return this;
+    }
 }
