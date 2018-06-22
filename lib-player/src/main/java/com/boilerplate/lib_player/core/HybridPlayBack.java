@@ -20,7 +20,6 @@ public abstract class HybridPlayBack {
 
 
     protected CopyOnWriteArraySet<IHybridPlayerEventAdapter> hybridPlayerEventAdapters;
-    protected boolean shouldAutoPlay = true;
     protected boolean isBufferIng;
     protected boolean isPrepare;
 

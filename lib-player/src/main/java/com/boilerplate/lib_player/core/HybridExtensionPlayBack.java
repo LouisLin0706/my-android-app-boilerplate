@@ -16,7 +16,7 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
 
     public HybridPlayerView hybridPlayerView;
     private AutoSyncControllerComponent autoSyncControllerComponent;
-
+    protected boolean shouldAutoPlay = true;
     protected int resumeWindow;
     protected long resumePosition;
     protected Uri currentUri;
@@ -36,6 +36,14 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
 
     public long getResumePosition() {
         return resumePosition;
+    }
+
+    public void setShouldAutoPlay(boolean shouldAutoPlay) {
+        this.shouldAutoPlay = shouldAutoPlay;
+    }
+
+    public boolean isShouldAutoPlay() {
+        return shouldAutoPlay;
     }
 
     public Uri getCurrentUri() {
@@ -86,12 +94,13 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
 
     @Override
     public HybridLifecyclePlayBack transformCorePlayer(HybridLifecyclePlayBack oldHybridLifecyclePlayBack) {
-        setResumePosition(oldHybridLifecyclePlayBack.getResumePosition());
+        setResumePosition(oldHybridLifecyclePlayBack.getCurrentPosition());
         setResumeWindow(oldHybridLifecyclePlayBack.getResumeWindow());
         setCurrentUri(oldHybridLifecyclePlayBack.getCurrentUri());
         setCurrentOverrideExtensionAdapter(oldHybridLifecyclePlayBack.getCurrentOverrideExtensionAdapter());
         setHybridPlayerView(oldHybridLifecyclePlayBack.getHybridPlayerView());
         setAutoSyncControllerComponent(oldHybridLifecyclePlayBack.getAutoSyncControllerComponent());
+        setShouldAutoPlay(oldHybridLifecyclePlayBack.isPlaying());
         oldHybridLifecyclePlayBack.release();
         initialize();
         return null;
@@ -135,8 +144,18 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
         }
     }
 
+    private IHybridPlayerEventAdapter iHybridPlayerEventAdapter = new IHybridPlayerEventAdapter() {
+        @Override
+        public void onPrepared(HybridPlayBack hybridPlayBack) {
+            if (autoSyncControllerComponent != null) {
+                autoSyncControllerComponent.startLoop(HybridExtensionPlayBack.this);
+            }
+        }
+    };
+
     @Override
     public void release() {
+        removeHybridEventListener(iHybridPlayerEventAdapter);
         if (autoSyncControllerComponent != null) {
             autoSyncControllerComponent.stopLoop();
         }
@@ -144,9 +163,7 @@ public abstract class HybridExtensionPlayBack extends HybridPlayBack {
 
     @Override
     public void initialize() {
-        if (autoSyncControllerComponent != null) {
-            autoSyncControllerComponent.startLoop(this);
-        }
+        addHybridEventListener(iHybridPlayerEventAdapter);
         if (currentUri != null) {
             setDataSourceToPlay();
         }

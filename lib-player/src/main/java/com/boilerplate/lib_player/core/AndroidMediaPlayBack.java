@@ -123,7 +123,7 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
     public void release() {
         super.release();
         if (mediaPlayer != null) {
-            resumeWindow = 0;
+            resumeWindow = 1;
             resumePosition = Math.max(0, mediaPlayer.getCurrentPosition());
             shouldAutoPlay = mediaPlayer.isPlaying();
             mediaPlayer.release();
