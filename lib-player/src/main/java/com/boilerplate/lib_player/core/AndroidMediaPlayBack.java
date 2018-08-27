@@ -180,7 +180,7 @@ public class AndroidMediaPlayBack extends HybridLifecyclePlayBack {
         }
 
         @Override
-        public void onPrepared(MediaPlayer mp) {
+            public void onPrepared(MediaPlayer mp) {
             mp.seekTo((int) resumePosition);
             if (shouldAutoPlay) {
                 mp.start();

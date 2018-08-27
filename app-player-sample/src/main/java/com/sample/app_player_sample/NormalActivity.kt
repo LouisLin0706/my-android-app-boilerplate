@@ -18,7 +18,9 @@ import com.boilerplate.lib_player.view.HybridPlayerView
 class NormalActivity : AppCompatActivity() {
 
     private var hybridLifecyclePlayBack: HybridLifecyclePlayBack? = null
-    private val sampleUrl: Uri = Uri.parse("https://storage.googleapis.com/android-tv/Sample%20videos/Google%2B/Google%2B_%20Instant%20Upload.mp4")
+    //https://d2dflkddhtkcl4.cloudfront.net/9774/1/v1/9774-eps-1_d_SD.m3u8
+    //d2dflkddhtkcl4.cloudfront.net
+    private val sampleUrl: Uri = Uri.parse("https://chococdn.chocolabs.com/9774/1/v1/9774-eps-1_d_SD.m3u8")
 
     companion object {
         fun getNormalActivityIntent(context: Context): Intent {
@@ -31,7 +33,7 @@ class NormalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_normal)
         val hybridPlayerView = findViewById<HybridPlayerView>(R.id.hybridPlayerView)
-        hybridLifecyclePlayBack = HybridPlayBack.createInstance(this, TYPE_ANDROID_NATIVE_PLAYBACK)
+        hybridLifecyclePlayBack = HybridPlayBack.createInstance(this, TYPE_EXO_PLAYBACK)
         hybridLifecyclePlayBack?.setHybridPlayerView(hybridPlayerView)
         hybridLifecyclePlayBack?.autoSyncControllerComponent = AutoSyncControllerComponent()
         findViewById<SwitchCompat>(R.id.switchCompat_player).setOnCheckedChangeListener { buttonView, isChecked ->

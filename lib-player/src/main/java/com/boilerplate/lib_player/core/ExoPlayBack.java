@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.boilerplate.lib_player.extension.OverrideExtensionAdapter;
+import com.boilerplate.lib_player.extension.cdn.CDNHttpDataSourceFactory;
 import com.boilerplate.lib_player.view.HybridPlayerView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -42,7 +43,6 @@ import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.util.EventLogger;
@@ -369,7 +369,7 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
      */
     public HttpDataSource.Factory buildHttpDataSourceFactory(
             TransferListener<? super DataSource> listener) {
-        return new DefaultHttpDataSourceFactory(userAgent, listener);
+        return new CDNHttpDataSourceFactory(userAgent, listener);
     }
 
 
