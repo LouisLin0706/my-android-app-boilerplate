@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
 android {
     def androidVersions = rootProject.ext.android
     compileSdkVersion androidVersions.compileSdkVersion
@@ -12,7 +16,6 @@ android {
         targetSdkVersion androidVersions.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -28,6 +31,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':base')
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     implementation project(':lib-litho')
 }

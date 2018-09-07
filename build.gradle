@@ -2,6 +2,7 @@
 apply from: 'buildsystem/dependencies.gradle'
 apply from: 'buildsystem/configurations.gradle'
 buildscript {
+    ext.kotlin_version = '1.2.61'
     ext.kotlin_version = '1.2.41'
     ext.kotlinVersion = '1.2.10'
     repositories {
@@ -28,4 +29,5 @@ ext {
     // App dependencies
     kotlinVersion = kotlinVersion
     dagger2Version = '2.11'
+    supportLibraryVersion = '27.1.1'
 }

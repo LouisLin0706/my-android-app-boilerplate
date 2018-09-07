@@ -39,7 +39,7 @@ ext {
     exoplayer2 = '2.7.3'
     kotlin_version = '1.2.31'
 
-    litho = '0.13.1'
+    litho = '0.19.0'
     lithoSections = '0.13.1'
     soLoader = '0.2.0'
     fresco = '0.13.1'
