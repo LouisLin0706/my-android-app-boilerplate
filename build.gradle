@@ -2,8 +2,7 @@
 apply from: 'buildsystem/dependencies.gradle'
 apply from: 'buildsystem/configurations.gradle'
 buildscript {
-    ext.kotlin_version = '1.2.41'
-    ext.kotlinVersion = '1.2.10'
+    ext.kotlin_version = '1.2.61'
     repositories {
         jcenter()
         google()
@@ -11,7 +10,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.google.gms:google-services:3.0.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -24,8 +22,23 @@ task clean(type: Delete) {
 }
 
 // Define versions in a single place
+
 ext {
-    // App dependencies
-    kotlinVersion = kotlinVersion
+    compileSdkVersion = 27
+    minSdkVersion = 17
+    targetSdkVersion = 27
+    minSdkInstant = 21
     dagger2Version = '2.11'
+    supportLibraryVersion = '27.1.1'
+    constraintLayoutVersion = '1.1.2'
+    multidexVerion = '1.0.1'
+    roomVersion = '1.0.0'
+
+    googleServiceVersion = '11.6.2'
+    gsonVersion = "2.8.5"
+
+    retrofitVersion = "2.4.0"
+    okhttpVersion = "3.9.1"
+    glideVersion = "4.3.1"
+    rx2LifecycleVersion = "2.2.0"
 }

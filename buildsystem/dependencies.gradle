@@ -37,8 +37,7 @@ ext {
     assertJ = '3.8.0'
     multidexVersion = '1.0.1'
     exoplayer2 = '2.7.3'
-    kotlin_version = '1.2.31'
-
+    kotlin_version = '1.2.61'
     litho = '0.13.1'
     lithoSections = '0.13.1'
     soLoader = '0.2.0'
