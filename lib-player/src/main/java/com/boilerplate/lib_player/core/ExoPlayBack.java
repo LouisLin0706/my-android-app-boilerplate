@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -40,6 +41,7 @@ import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -57,7 +59,7 @@ import java.lang.reflect.Constructor;
  * TODO Aes dram
  */
 public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPreparer {
-    private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
+    private DefaultBandwidthMeter BANDWIDTH_METER;
     private SimpleExoPlayer player;
     private DefaultTrackSelector trackSelector;
     private EventLogger eventLogger;
@@ -76,6 +78,12 @@ public class ExoPlayBack extends HybridLifecyclePlayBack implements PlaybackPrep
         super(hybridPlayerView);
         this.context = context;
         mainHandler = new Handler();
+        BANDWIDTH_METER = new DefaultBandwidthMeter(mainHandler, new BandwidthMeter.EventListener() {
+            @Override
+            public void onBandwidthSample(int elapsedMs, long bytes, long bitrate) {
+                Log.d("Test_band_width", "elapsedMs=" + elapsedMs + "  bytes = " + bytes + "  bitrate=" + bitrate);
+            }
+        });
         this.userAgent = Util.getUserAgent(context, "HybridExo");
         initialize();
     }
